@@ -357,7 +357,7 @@ Share
 
         <!-- Project 3 -->
         <article id="DI" class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transition-transform duration-500 cursor-pointer flex flex-col md:flex-row-reverse items-center">
-          <img src="img/B/B.png" alt="Tampilan halaman Kutipan Blog" class="w-full md:w-1/2 h-48 object-cover transition-transform duration-500 hover:scale-110" loading="lazy"/>
+          <img src="img/B/favicon_DI.png" alt="Tampilan halaman Kutipan Blog" class="w-full md:w-1/2 h-48 object-cover transition-transform duration-500 hover:scale-110" loading="lazy"/>
           <div class="p-6 text-left md:w-1/2 flex flex-col justify-between">
             <h3 class="text-xl font-bold text-gray-900 dark:text-white transition-colors duration-300 hover:text-blue-600">
               Dye Blog
@@ -456,7 +456,7 @@ Share
             <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Dye Blog</h3>
             <span class="inline-block bg-green-400 text-gray-900 px-2 py-1 rounded-full text-xs font-semibold">Blog</span>
             <div class="mt-4 flex justify-between items-center">
-              <a href="https://denmard123.github.io/show-blog/" class="text-blue-500 dark:text-yellow-400 font-semibold hover:underline">Lihat Detail</a>
+              <a href="https://dye-inject.blogspot.com/" class="text-blue-500 dark:text-yellow-400 font-semibold hover:underline">Lihat Detail</a>
               <button id="share-blog-kutipan" class="text-gray-500 dark:text-gray-300 hover:text-yellow-400">
                 <i class="fas fa-share-alt"></i>
               </button>
@@ -471,7 +471,7 @@ Share
           </div>
           <div class="p-4">
             <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Sss Game</h3>
-            <span class="inline-block bg-green-400 text-gray-900 px-2 py-1 rounded-full text-xs font-semibold">Game</span>
+            <span class="inline-block bg-red-400 text-gray-900 px-2 py-1 rounded-full text-xs font-semibold">Game</span>
             <div class="mt-4 flex justify-between items-center">
               <a href="https://denmard123.github.io/sanca/" class="text-blue-500 dark:text-yellow-400 font-semibold hover:underline">Lihat Detail</a>
               <button id="share-blog-kutipan" class="text-gray-500 dark:text-gray-300 hover:text-yellow-400">
@@ -505,7 +505,7 @@ Share
       </div>
     </div>
 
-    <!-- Slide 4 -->
+    <!-- Slide 3 -->
     <div class="min-w-full flex-shrink-0 flex justify-center items-center relative">
       <img src="img/B/favicon_DI.png" alt="Tampilan halaman Kutipan Blog" class="w-full md:w-1/2 h-48 object-cover transition-transform duration-500 hover:scale-110" loading="lazy"/>
       <div class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 text-white px-4 py-1 rounded-md text-sm md:text-base">
@@ -546,11 +546,37 @@ Share
 
 
   <!-- Footer -->
-  <footer class="text-center p-6 bg-white dark:bg-gray-800 shadow-md border-t border-gray-300 dark:border-gray-700 mt-24">
-    <p class="text-gray-600 dark:text-gray-300 text-sm">
-      © 2025 Den Mardiyana | Dibuat dengan ❤️
-    </p>
-  </footer>
+<!-- Footer Floating / Fixed -->
+<footer class="fixed bottom-0 left-0 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-t border-gray-200 dark:border-gray-700 shadow-lg z-50">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+    
+    <!-- Copyright -->
+    <div class="text-gray-700 dark:text-gray-300 text-sm text-center md:text-left">
+      © 2025 Den Mardiyana Saputra | Dibuat dengan ❤️
+    </div>
+
+    <!-- Quick Links / CTA -->
+    <div class="flex flex-wrap gap-3 justify-center md:justify-end">
+      <a href="https://denmard123.github.io/sanca/" 
+         class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold px-4 py-2 rounded-md shadow-md transition-colors">
+        Main Sanca Game
+      </a>
+      <a href="https://denmard123.github.io/show-blog/" 
+         class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-md shadow-md transition-colors">
+        Baca Quote
+      </a>
+      <a href="https://dye-inject.blogspot.com/" 
+         class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-md shadow-md transition-colors">
+        Baca Blog
+      </a>
+      <a href="about.html" 
+         class="bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-900 dark:text-gray-200 font-semibold px-4 py-2 rounded-md shadow-md transition-colors">
+        Tentang Saya
+      </a>
+    </div>
+  </div>
+</footer>
+
 
   <script src="script.js"></script>
 </body>
