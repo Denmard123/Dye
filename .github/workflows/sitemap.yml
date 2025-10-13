@@ -75,12 +75,12 @@ jobs:
           EOF
 
       # 4️⃣ Commit & Push sitemap
-      - name: Commit & Push Sitemap
-        env:
-          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add sitemap.xml
-          git commit -m "Auto-update sitemap from all HTML files" || echo "No changes to commit"
-          git push https://x-access-token:${PAT_TOKEN}@github.com/Denmard123/Dye.git HEAD:main
+     - name: Commit & Push Sitemap
+  env:
+    PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+  run: |
+    git config user.name "GitHub Actions"
+    git config user.email "actions@github.com"
+    git add sitemap.xml
+    git commit -m "Update sitemap from index.html" || echo "No changes to commit"
+    git push https://x-access-token:${PAT_TOKEN}@github.com/Denmard123/Dye.git HEAD:main
