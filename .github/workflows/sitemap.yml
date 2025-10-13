@@ -1,11 +1,11 @@
-name: Auto Generate Sitemap - Full Scan
+name: Auto Generate Full Sitemap
 
 on:
   push:
     branches:
-      - main   # ganti sesuai branch utama
+      - main
   schedule:
-    - cron: '0 2 * * *' # jalan tiap hari jam 2 pagi UTC (optional)
+    - cron: '0 2 * * *'  # optional, setiap hari jam 2 UTC
 
 jobs:
   build:
@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get install -y python3-bs4 python3-lxml python3-requests
 
-      # 3️⃣ Generate sitemap by scanning all links
+      # 3️⃣ Generate sitemap by scanning all HTML files recursively
       - name: Generate sitemap
         run: |
           python3 << 'EOF'
@@ -28,11 +28,10 @@ jobs:
 
           BASE_URL = "https://denmard123.github.io/Dye/"
           sitemap_file = "sitemap.xml"
-
           urls = set()
 
-          # Fungsi untuk scan file HTML
-          def scan_html(file_path):
+          # Fungsi scan HTML
+          def scan_html(file_path, base_url):
               try:
                   with open(file_path, "r", encoding="utf-8") as f:
                       soup = BeautifulSoup(f, "lxml")
@@ -43,15 +42,17 @@ jobs:
                       if href.startswith("http://") or href.startswith("https://"):
                           urls.add(href)
                       else:
-                          full_url = os.path.join(BASE_URL, href)
-                          urls.add(full_url.replace("\\", "/"))
+                          full_url = os.path.join(base_url, href).replace("\\", "/")
+                          urls.add(full_url)
               except Exception as e:
                   print(f"Error scanning {file_path}: {e}")
 
-          # Scan semua HTML di root
-          for file in os.listdir("."):
-              if file.endswith(".html"):
-                  scan_html(file)
+          # Scan semua HTML di root dan sub-folder
+          for root, dirs, files in os.walk("."):
+              for file in files:
+                  if file.endswith(".html"):
+                      rel_path = os.path.join(root, file)
+                      scan_html(rel_path, BASE_URL)
 
           # Tambahkan homepage
           urls.add(BASE_URL)
@@ -61,12 +62,11 @@ jobs:
               f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
               f.write('<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">\n')
               for url in sorted(urls):
-                  # Prioritas bisa diatur berdasarkan kategori
                   if "about.html" in url:
                       priority = "0.8"
-                  elif "blog" in url or "show-blog" in url:
+                  elif "blog" in url:
                       priority = "0.7"
-                  elif "HabitTracker" in url:
+                  elif "HabitTracker" in url or "SssGame" in url:
                       priority = "0.9"
                   else:
                       priority = "0.6"
@@ -82,5 +82,5 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git add sitemap.xml
-          git commit -m "Auto-update sitemap from all HTML files" || echo "No changes to commit"
+          git commit -m "Auto-update full sitemap" || echo "No changes to commit"
           git push https://x-access-token:${PAT_TOKEN}@github.com/Denmard123/Dye.git HEAD:main
