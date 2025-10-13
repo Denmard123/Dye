@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://denmard123.github.io/Dye/sitemap.xml
