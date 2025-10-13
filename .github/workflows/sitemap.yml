@@ -12,6 +12,8 @@ jobs:
     steps:
       # 1️⃣ Checkout repo
       - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
 
       # 2️⃣ Install dependencies
       - name: Install dependencies
@@ -27,13 +29,10 @@ jobs:
           BASE_URL = "https://denmard123.github.io/Dye/"
           sitemap_file = "sitemap.xml"
 
-          # Load index.html
           with open("index.html", "r", encoding="utf-8") as f:
               soup = BeautifulSoup(f, "lxml")
 
           urls = set()
-
-          # Ambil semua <a href>
           for a in soup.find_all("a", href=True):
               href = a["href"].strip()
               if href.startswith("#") or href.startswith("javascript:"):
@@ -44,10 +43,8 @@ jobs:
                   full_url = os.path.join(BASE_URL, href)
                   urls.add(full_url.replace("\\", "/"))
 
-          # Tambahkan homepage
           urls.add(BASE_URL)
 
-          # Tulis sitemap.xml
           with open(sitemap_file, "w", encoding="utf-8") as f:
               f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
               f.write('<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">\n')
