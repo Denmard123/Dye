@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Homepage -->
+  <url>
+    <loc>https://denmard123.github.io/Dye/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://denmard123.github.io/Dye/about.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Project / Habit Tracker -->
+  <url>
+    <loc>https://denmard123.github.io/HabitTracker/</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog / Kutipan Blog -->
+  <url>
+    <loc>https://denmard123.github.io/show-blog/</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Blog / Dye Blog -->
+  <url>
+    <loc>https://dye-inject.blogspot.com/</loc>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Game / Sss Game -->
+  <url>
+    <loc>https://denmard123.github.io/sanca/</loc>
+    <priority>0.7</priority>
+  </url>
+</urlset>
