@@ -1,0 +1,66 @@
+name: Generate Sitemap from Index
+
+on:
+  push:
+    branches:
+      - main  # ganti sesuai branch utama
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout repo
+      - uses: actions/checkout@v3
+
+      # Install HTML parser
+      - name: Install dependencies
+        run: sudo apt-get install -y python3-bs4 python3-lxml python3-requests
+
+      # Generate sitemap from index.html
+      - name: Generate sitemap from links
+        run: |
+          python3 << 'EOF'
+          import os
+          from bs4 import BeautifulSoup
+
+          BASE_URL = "https://denmard123.github.io/Dye/"
+          sitemap_file = "sitemap.xml"
+
+          # Load index.html
+          with open("index.html", "r", encoding="utf-8") as f:
+              soup = BeautifulSoup(f, "lxml")
+
+          urls = set()
+
+          # Ambil semua <a href>
+          for a in soup.find_all("a", href=True):
+              href = a["href"].strip()
+              if href.startswith("#") or href.startswith("javascript:"):
+                  continue
+              if href.startswith("http://") or href.startswith("https://"):
+                  urls.add(href)
+              else:
+                  # convert relative path ke full URL
+                  full_url = os.path.join(BASE_URL, href)
+                  urls.add(full_url.replace("\\", "/"))
+
+          # Tambahkan homepage
+          urls.add(BASE_URL)
+
+          # Tulis sitemap.xml
+          with open(sitemap_file, "w", encoding="utf-8") as f:
+              f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+              f.write('<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">\n')
+              for url in sorted(urls):
+                  f.write(f"  <url><loc>{url}</loc><priority>0.7</priority></url>\n")
+              f.write('</urlset>\n')
+          EOF
+
+      # Commit & push sitemap
+      - name: Commit sitemap
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "Update sitemap from index.html" || echo "No changes to commit"
+          git push
