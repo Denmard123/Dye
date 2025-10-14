@@ -83,10 +83,25 @@ if (sourceBtn) {
     const techWrapper = document.querySelector(".flex.flex-wrap");
     if (techWrapper) {
       const techs = project.technologies || project.tech || [];
-      techWrapper.innerHTML = techs
-        .map(t => `<span class="px-4 py-2 bg-yellow-100 dark:bg-yellow-500/20 text-yellow-800 dark:text-yellow-300 rounded-lg text-sm font-medium">${t}</span>`)
-        .join("");
+    
+      // Mapping warna & icon default per teknologi
+      const techMap = {
+        "HTML5": { color: "bg-orange-100 dark:bg-orange-500/20", text: "text-orange-800 dark:text-orange-300", icon: "fa-html5" },
+        "CSS3": { color: "bg-blue-100 dark:bg-blue-500/20", text: "text-blue-800 dark:text-blue-300", icon: "fa-css3-alt" },
+        "JavaScript": { color: "bg-yellow-100 dark:bg-yellow-500/20", text: "text-yellow-800 dark:text-yellow-300", icon: "fa-js" },
+        "Tailwind CSS": { color: "bg-teal-100 dark:bg-teal-500/20", text: "text-teal-800 dark:text-teal-300", icon: "fa-wind" },
+        "Blogger": { color: "bg-red-100 dark:bg-red-500/20", text: "text-red-800 dark:text-red-300", icon: "fa-blog" },
+        "default": { color: "bg-gray-100 dark:bg-gray-700/20", text: "text-gray-800 dark:text-gray-200", icon: "fa-circle-dot" }
+      };
+    
+      techWrapper.innerHTML = techs.map(t => {
+        const map = techMap[t] || techMap["default"];
+        return `<span class="px-4 py-2 ${map.color} ${map.text} rounded-lg text-sm font-medium flex items-center gap-2">
+                  <i class="fab ${map.icon}"></i>${t}
+                </span>`;
+      }).join("");
     }
+    
 
     // RELATED PROJECTS
     const relatedGrid = document.querySelector(".related-section .grid");
@@ -100,22 +115,23 @@ if (sourceBtn) {
       );
 
       relatedGrid.innerHTML =
-        relatedProjects.length > 0
-          ? relatedProjects
-              .map(
-                p => `
-                <div class="group bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden hover:scale-[1.03] transition">
-                  <a href="project.html?id=${p.id || p.slug || p.name}">
-                    <img src="${p.preview || p.img}" class="w-full h-40 object-cover group-hover:scale-105 transition">
-                    <div class="p-4">
-                      <h4 class="font-bold text-lg mb-2">${p.title || p.name}</h4>
-                      <p class="text-sm text-gray-600 dark:text-gray-400">${p.subtitle || p.description || ""}</p>
-                    </div>
-                  </a>
-                </div>`
-              )
-              .join("")
-          : `<p class="text-center text-gray-500 dark:text-gray-400">Belum ada proyek terkait.</p>`;
+      relatedProjects.length > 0
+        ? relatedProjects
+            .map(p => {
+              const targetUrl = `project.html?id=${p.id || p.slug || p.name}`;
+              return `
+                <div class="group bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden hover:scale-[1.03] transition cursor-pointer"
+                     onclick="window.location.href='${targetUrl}'">
+                  <img src="${p.preview || p.img}" class="w-full h-40 object-cover group-hover:scale-105 transition">
+                  <div class="p-4">
+                    <h4 class="font-bold text-lg mb-2">${p.title || p.name}</h4>
+                    <p class="text-sm text-gray-600 dark:text-gray-400">${p.subtitle || p.description || ""}</p>
+                  </div>
+                </div>
+              `;
+            })
+            .join("")
+        : `<p class="text-center text-gray-500 dark:text-gray-400">Belum ada proyek terkait.</p>`;
     }
   } catch (err) {
     console.error("⚠️ Gagal memuat data proyek:", err);
