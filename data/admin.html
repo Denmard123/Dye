@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Dye</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 p-6">
+  <h1 class="text-3xl font-bold mb-6">Admin Panel</h1>
+
+  <!-- Pilih Section -->
+  <div class="space-y-4">
+    <label class="block font-semibold">Section</label>
+    <select id="sectionSelect" class="p-2 border rounded w-full">
+      <option value="robots">Robot Section</option>
+      <option value="labels">Labels / Projects</option>
+      <option value="carousel">Carousel</option>
+    </select>
+  </div>
+
+  <!-- Form dinamis -->
+  <div id="formContainer" class="mt-6 space-y-4"></div>
+
+  <button id="saveBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Simpan Perubahan</button>
+
+  <script src="./admin.js"></script>
+</body>
+</html>
