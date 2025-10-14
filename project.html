@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Showcase | Den Mardiyana Tech Studio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+        },
+      },
+    }
+  </script>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-500">
+
+  <!-- HEADER -->
+  <header id="main-header"
+    class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/80 dark:bg-gray-900/80 border-b border-gray-200 dark:border-gray-700 shadow-md">
+    <div class="max-w-7xl mx-auto flex items-center justify-between p-4">
+      <a href="index.html" class="flex items-center gap-2 text-gray-700 dark:text-gray-200 hover:text-yellow-500 transition">
+        <i class="fas fa-arrow-left"></i>
+        <span class="font-semibold text-lg">Kembali</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO / PARALLAX -->
+  <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-yellow-200/60 to-transparent dark:from-gray-800"></div>
+    <img src="./img/HT/HT.png" alt="Preview" class="absolute w-full h-full object-cover opacity-30 transform scale-105 parallax-layer" data-speed="0.2">
+    <div class="relative z-10 text-center px-6 mt-20">
+      <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 dark:text-white mb-4 tracking-tight">Habit Tracker</h1>
+      <p class="text-lg md:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        Aplikasi web untuk mencatat kebiasaan harian dan melacak progres dengan antarmuka interaktif.
+      </p>
+      <div class="mt-8 flex justify-center gap-4">
+        <a href="https://denmard123.github.io/HabitTracker/" target="_blank"
+          class="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-bold rounded-lg shadow-md transition">
+          Lihat Demo
+        </a>
+        <a href="https://github.com/denmard123/HabitTracker" target="_blank"
+          class="px-6 py-3 border border-gray-600 dark:border-gray-300 text-gray-700 dark:text-gray-200 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+          Kode Sumber
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT PROJECT -->
+  <section class="max-w-5xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Tentang Proyek</h2>
+    <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
+      Habit Tracker dibuat untuk membantu pengguna membangun kebiasaan positif melalui pelacakan progres yang konsisten.
+      Dibangun menggunakan <strong>HTML, Tailwind CSS, dan JavaScript</strong> dengan fokus pada UI ringan dan responsif.
+    </p>
+
+    <h3 class="text-2xl font-semibold mb-4">Fitur Utama</h3>
+    <ul class="list-disc pl-6 space-y-2 text-gray-600 dark:text-gray-300">
+      <li>Tambah, edit, dan hapus kebiasaan harian</li>
+      <li>Grafik progres otomatis</li>
+      <li>Mode gelap dan terang</li>
+      <li>Penyimpanan data lokal tanpa server</li>
+    </ul>
+  </section>
+
+  <!-- IMAGE SHOWCASE -->
+  <section class="bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">Tampilan Aplikasi</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <img src="./img/HT/dashboard.png" alt="Dashboard" class="rounded-xl shadow-lg hover:scale-105 transition">
+        <img src="./img/HT/mobile.png" alt="Mobile View" class="rounded-xl shadow-lg hover:scale-105 transition">
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGY -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h3 class="text-2xl font-semibold mb-6 text-gray-900 dark:text-white">Teknologi yang Digunakan</h3>
+    <div class="flex flex-wrap gap-4">
+      <span class="px-4 py-2 bg-yellow-100 dark:bg-yellow-500/20 text-yellow-800 dark:text-yellow-300 rounded-lg text-sm font-medium">HTML5</span>
+      <span class="px-4 py-2 bg-blue-100 dark:bg-blue-500/20 text-blue-800 dark:text-blue-300 rounded-lg text-sm font-medium">Tailwind CSS</span>
+      <span class="px-4 py-2 bg-green-100 dark:bg-green-500/20 text-green-800 dark:text-green-300 rounded-lg text-sm font-medium">JavaScript</span>
+    </div>
+  </section>
+
+  <!-- RELATED PROJECTS -->
+  <section class="bg-gray-100 dark:bg-gray-800 py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h3 class="text-3xl font-bold mb-10 text-gray-900 dark:text-white text-center">Proyek Lainnya</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div class="group bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden hover:scale-[1.03] transition">
+          <img src="./img/SG/Sss.png" class="w-full h-40 object-cover group-hover:scale-105 transition">
+          <div class="p-4">
+            <h4 class="font-bold text-lg mb-2">Sss Game</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Game ular seru dengan kontrol sederhana.</p>
+          </div>
+        </div>
+        <div class="group bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden hover:scale-[1.03] transition">
+          <img src="./img/website.svg" class="w-full h-40 object-cover group-hover:scale-105 transition">
+          <div class="p-4">
+            <h4 class="font-bold text-lg mb-2">Portfolio Website</h4>
+            <p class="text-sm text-gray-600 dark:text-gray-400">Website portfolio dengan integrasi GitHub API.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="w-full bg-gray-200 dark:bg-gray-900 border-t border-gray-300 dark:border-gray-700 py-6 mt-10">
+    <div class="max-w-6xl mx-auto text-center text-gray-700 dark:text-gray-400">
+      © <span id="year"></span> Den Mardiyana Tech Studio • Dibuat dengan ❤️ dan TailwindCSS
+    </div>
+  </footer>
+
+  <!-- External Script -->
+  <script src="./src/project.js"></script>
+  <script src="./src/script.js"></script>
+</body>
+</html>

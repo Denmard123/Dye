@@ -1,53 +1,132 @@
 {
-    "robots": [
-      { "name": "Application", "img": "./img/robot.svg", "category": "application" },
-      { "name": "Website", "img": "./img/website.svg", "category": "website" }
+  "robots": [
+    { "name": "Application", "img": "./img/robot.svg", "category": "application" },
+    { "name": "Website", "img": "./img/website.svg", "category": "website" }
+  ],
+
+  "labels": {
+    "Web App": [
+      {
+        "id": "habit-tracker",
+        "name": "Habit Tracker",
+        "url": "https://denmard123.github.io/HabitTracker/",
+        "img": "./img/HT/HT.png",
+        "description": "Aplikasi pelacak kebiasaan harian untuk membantu produktivitas.",
+        "badgeColor": "yellow-400",
+        "category": "application"
+      }
     ],
-    "labels": {
-      "Web App": [
-        {
-          "name": "Habit Tracker",
-          "url": "https://denmard123.github.io/HabitTracker/",
-          "img": "./img/HT/HT.png",
-          "description": "Aplikasi pelacak kebiasaan harian untuk membantu produktivitas.",
-          "badgeColor": "yellow-400",
-          "category": "application"
-        }
-      ],
-      "Blog": [
-        {
-          "name": "Kutipan Blog",
-          "url": "https://denmard123.github.io/show-blog/",
-          "img": "./img/B/B.png",
-          "description": "Website blog yang berisi kutipan inspiratif.",
-          "badgeColor": "green-400",
-          "category": "website"
-        },
-        {
-          "name": "Dye Blog",
-          "url": "https://dye-inject.blogspot.com/",
-          "img": "./img/B/favicon_DI.png",
-          "description": "Blog tentang pembuatan website.",
-          "badgeColor": "green-400",
-          "category": "website"
-        }
-      ],
-      "Game": [
-        {
-          "name": "Sss Game",
-          "url": "https://denmard123.github.io/sanca/",
-          "img": "./img/SG/Sss.png",
-          "description": "Game ular Sss seru.",
-          "badgeColor": "red-400",
-          "category": "application"
-        }
-      ]
-    },
-    "carousel": [
-      { "img": "./img/HT/HT.png", "caption": "Habit Tracker" },
-      { "img": "./img/B/B.png", "caption": "Blog Kutipan" },
-      { "img": "./img/B/favicon_DI.png", "caption": "Dye Blog" },
-      { "img": "./img/SG/Sss.png", "caption": "Sss Game" }
+    "Blog": [
+      {
+        "id": "blog-kutipan",
+        "name": "Blog Kutipan",
+        "url": "https://denmard123.github.io/show-blog/",
+        "img": "./img/B/B.png",
+        "description": "Website blog yang berisi kutipan inspiratif.",
+        "badgeColor": "green-400",
+        "category": "website"
+      },
+      {
+        "id": "dye-blog",
+        "name": "Dye Blog",
+        "url": "https://dye-inject.blogspot.com/",
+        "img": "./img/B/favicon_DI.png",
+        "description": "Blog tentang pembuatan website.",
+        "badgeColor": "green-400",
+        "category": "website"
+      }
+    ],
+    "Game": [
+      {
+        "id": "sss-game",
+        "name": "Sss Game",
+        "url": "https://denmard123.github.io/sanca/",
+        "img": "./img/SG/Sss.png",
+        "description": "Game ular Sss seru.",
+        "badgeColor": "red-400",
+        "category": "application"
+      }
     ]
-  }
-  
+  },
+
+  "projects": [
+    {
+      "id": "HT",
+      "title": "Habit Tracker",
+      "subtitle": "Aplikasi web untuk mencatat kebiasaan harian dan melacak progres.",
+      "preview": "./img/HT/HT.png",
+      "about": "Habit Tracker dibuat untuk membantu pengguna membangun kebiasaan positif melalui pelacakan progres yang konsisten. Dibangun menggunakan HTML, Tailwind CSS, dan JavaScript dengan fokus pada UI ringan dan responsif.",
+      "features": [
+        "Tambah, edit, dan hapus kebiasaan harian",
+        "Grafik progres otomatis",
+        "Mode gelap dan terang",
+        "Penyimpanan data lokal tanpa server"
+      ],
+      "technologies": ["HTML5", "Tailwind CSS", "JavaScript"],
+      "screenshots": ["./img/HT/HT.png"],
+      "demo": "https://denmard123.github.io/HabitTracker/",
+      "source": "https://github.com/denmard123/HabitTracker",
+      "related": ["sss-game", "dye-blog"]
+    },
+    {
+      "id": "SG",
+      "title": "Sss Game",
+      "subtitle": "Game ular klasik yang dikembangkan dengan JavaScript dan Canvas.",
+      "preview": "./img/SG/Sss.png",
+      "about": "Sss Game adalah permainan ular sederhana dengan tampilan retro dan gameplay adiktif. Pemain mengendalikan ular yang tumbuh semakin panjang setiap kali makan buah.",
+      "features": [
+        "Desain retro dengan animasi halus",
+        "Kontrol intuitif",
+        "Mode skor tertinggi",
+        "Ringan dan berjalan di browser"
+      ],
+      "technologies": ["HTML5", "CSS3", "JavaScript (Canvas API)"],
+      "screenshots": ["./img/SG/Sss.png"],
+      "demo": "https://denmard123.github.io/sanca/",
+      "source": "https://github.com/denmard123/sanca",
+      "related": ["habit-tracker", "dye-blog"]
+    },
+    {
+      "id": "DB",
+      "title": "Dye Blog",
+      "subtitle": "Blog modern untuk menampilkan artikel seputar web development.",
+      "preview": "./img/B/favicon_DI.png",
+      "about": "Dye Blog berfokus pada berbagi wawasan seputar web design, pengembangan website, serta tips produktivitas digital. Dibangun dengan platform Blogger dan dioptimalkan untuk SEO.",
+      "features": [
+        "Optimasi SEO bawaan",
+        "Struktur halaman responsif",
+        "Integrasi Google Search Console",
+        "Navigasi cepat antar artikel"
+      ],
+      "technologies": ["Blogger", "HTML5", "CSS3"],
+      "screenshots": ["./img/B/B.png"],
+      "demo": "https://dye-inject.blogspot.com/",
+      "source": null,
+      "related": ["sss-game", "habit-tracker"]
+    },
+    {
+      "id" : "KB",
+      "name": "Kutipan Blog",
+      "slug": "kutipan-blog",
+      "img": "./img/B/B.png",
+      "demo": "https://denmard123.github.io/show-blog/",
+      "repo": "https://github.com/denmard123/show-blog",
+      "category": "website",
+      "description": "Website blog berisi kutipan inspiratif dan motivasi, dibangun dengan desain minimalis.",
+      "features": [
+        "Koleksi kutipan harian",
+        "UI ringan dan cepat dimuat",
+        "Mode terang & gelap"
+      ],
+      "tech": ["HTML5", "Tailwind CSS", "JavaScript"],
+      "related": ["Dye Blog", "Portfolio Website"]
+    }
+  ],
+
+  "carousel": [
+    { "img": "./img/HT/HT.png", "caption": "Habit Tracker" },
+    { "img": "./img/B/B.png", "caption": "Blog Kutipan" },
+    { "img": "./img/B/favicon_DI.png", "caption": "Dye Blog" },
+    { "img": "./img/SG/Sss.png", "caption": "Sss Game" }
+  ]
+}
