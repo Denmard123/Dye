@@ -14,7 +14,7 @@ async function loadProject() {
   try {
     const res = await fetch("./data/data.json");
     const data = await res.json();
-    const project = data.projects.find(p => p.id.toLowerCase() === projectId.toLowerCase());
+    const project = data.projects.find(p => (p.id || p.slug || p.name).toLowerCase() === projectId.toLowerCase());
 
     if (!project) {
       document.querySelector("main, section").innerHTML = `
@@ -25,20 +25,40 @@ async function loadProject() {
     }
 
     // 🧩 Update judul halaman
-    document.title = `${project.title || project.name} | Den Mardiyana Tech Studio`;
+    document.title = `${project.title || project.name} | Den Mardiyana Saputra`;
 
-    // HERO SECTION
-    document.querySelector("section img").src = project.preview || project.img;
-    document.querySelector("h1").textContent = project.title || project.name;
-    document.querySelector("h1 + p").textContent = project.subtitle || project.description;
+   // HERO SECTION
+const heroImg = document.querySelector("section img");
+const heroTitle = document.querySelector("h1");
+const heroDesc = document.querySelector("h1 + p");
+if (heroImg) heroImg.src = project.preview || project.img;
+if (heroTitle) heroTitle.textContent = project.title || project.name;
+if (heroDesc) heroDesc.textContent = project.subtitle || project.description || "";
 
-    const demoBtn = document.querySelector('a[href*="HabitTracker"]'); // Tombol demo
-    const sourceBtn = document.querySelector('a[href*="github"]'); // Tombol sumber
-    if (demoBtn) demoBtn.href = project.demo || "#";
-    if (sourceBtn) {
-      sourceBtn.href = project.source || project.repo || "#";
-      sourceBtn.classList.toggle("hidden", !(project.source || project.repo));
-    }
+// Tombol demo & kode sumber
+const demoBtn = document.querySelector('a.demo-link');
+const sourceBtn = document.querySelector('a.source-link');
+
+if (demoBtn) {
+  if (project.demo) {
+    demoBtn.href = project.demo;
+    demoBtn.classList.remove("hidden");
+  } else {
+    demoBtn.href = "#";
+    demoBtn.classList.add("hidden");
+  }
+}
+
+if (sourceBtn) {
+  const sourceLink = project.source || project.repo;
+  if (sourceLink) {
+    sourceBtn.href = sourceLink;
+    sourceBtn.classList.remove("hidden");
+  } else {
+    sourceBtn.href = "#";
+    sourceBtn.classList.add("hidden");
+  }
+}
 
     // ABOUT SECTION
     const aboutText = document.querySelector("section p.text-gray-600");
@@ -55,9 +75,7 @@ async function loadProject() {
     const showcase = document.querySelector(".grid.grid-cols-1");
     if (showcase) {
       showcase.innerHTML = (project.screenshots || [project.preview || project.img])
-        .map(
-          img => `<img src="${img}" alt="${project.title}" class="rounded-xl shadow-lg hover:scale-105 transition">`
-        )
+        .map(img => `<img src="${img}" alt="${project.title || project.name}" class="rounded-xl shadow-lg hover:scale-105 transition">`)
         .join("");
     }
 
@@ -66,9 +84,7 @@ async function loadProject() {
     if (techWrapper) {
       const techs = project.technologies || project.tech || [];
       techWrapper.innerHTML = techs
-        .map(
-          t => `<span class="px-4 py-2 bg-yellow-100 dark:bg-yellow-500/20 text-yellow-800 dark:text-yellow-300 rounded-lg text-sm font-medium">${t}</span>`
-        )
+        .map(t => `<span class="px-4 py-2 bg-yellow-100 dark:bg-yellow-500/20 text-yellow-800 dark:text-yellow-300 rounded-lg text-sm font-medium">${t}</span>`)
         .join("");
     }
 
@@ -78,6 +94,7 @@ async function loadProject() {
       const relatedProjects = data.projects.filter(
         p =>
           project.related?.includes(p.id) ||
+          project.related?.includes(p.slug) ||
           project.related?.includes(p.title) ||
           project.related?.includes(p.name)
       );
@@ -88,7 +105,7 @@ async function loadProject() {
               .map(
                 p => `
                 <div class="group bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden hover:scale-[1.03] transition">
-                  <a href="project.html?id=${p.id}">
+                  <a href="project.html?id=${p.id || p.slug || p.name}">
                     <img src="${p.preview || p.img}" class="w-full h-40 object-cover group-hover:scale-105 transition">
                     <div class="p-4">
                       <h4 class="font-bold text-lg mb-2">${p.title || p.name}</h4>
