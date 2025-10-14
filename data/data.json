@@ -1,15 +1,7 @@
 {
     "robots": [
-      {
-        "name": "Application",
-        "img": "./img/robot.svg",
-        "category": "application"
-      },
-      {
-        "name": "Website",
-        "img": "./img/website.svg",
-        "category": "website"
-      }
+      { "name": "Application", "img": "./img/robot.svg", "category": "application" },
+      { "name": "Website", "img": "./img/website.svg", "category": "website" }
     ],
     "labels": {
       "Web App": [
@@ -18,7 +10,8 @@
           "url": "https://denmard123.github.io/HabitTracker/",
           "img": "./img/HT/HT.png",
           "description": "Aplikasi pelacak kebiasaan harian untuk membantu produktivitas.",
-          "badgeColor": "yellow-400"
+          "badgeColor": "yellow-400",
+          "category": "application"
         }
       ],
       "Blog": [
@@ -27,14 +20,16 @@
           "url": "https://denmard123.github.io/show-blog/",
           "img": "./img/B/B.png",
           "description": "Website blog yang berisi kutipan inspiratif.",
-          "badgeColor": "green-400"
+          "badgeColor": "green-400",
+          "category": "website"
         },
         {
           "name": "Dye Blog",
           "url": "https://dye-inject.blogspot.com/",
           "img": "./img/B/favicon_DI.png",
           "description": "Blog tentang pembuatan website.",
-          "badgeColor": "green-400"
+          "badgeColor": "green-400",
+          "category": "website"
         }
       ],
       "Game": [
@@ -43,27 +38,16 @@
           "url": "https://denmard123.github.io/sanca/",
           "img": "./img/SG/Sss.png",
           "description": "Game ular Sss seru.",
-          "badgeColor": "red-400"
+          "badgeColor": "red-400",
+          "category": "application"
         }
       ]
     },
     "carousel": [
-      {
-        "img": "img/HT/HT.png",
-        "caption": "Habit Tracker"
-      },
-      {
-        "img": "img/B/B.png",
-        "caption": "Blog Kutipan"
-      },
-      {
-        "img": "img/B/favicon_DI.png",
-        "caption": "Dye Blog"
-      },
-      {
-        "img": "img/SG/Sss.png",
-        "caption": "Sss Game"
-      }
+      { "img": "./img/HT/HT.png", "caption": "Habit Tracker" },
+      { "img": "./img/B/B.png", "caption": "Blog Kutipan" },
+      { "img": "./img/B/favicon_DI.png", "caption": "Dye Blog" },
+      { "img": "./img/SG/Sss.png", "caption": "Sss Game" }
     ]
   }
   

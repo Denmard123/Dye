@@ -2,11 +2,29 @@ const sectionSelect = document.getElementById('sectionSelect');
 const formContainer = document.getElementById('formContainer');
 let data = {};
 
-// Ambil data.json dulu
+// Tentukan path data.json sesuai lokasi file
+function getDataPath() {
+  const currentPath = window.location.pathname; // /Dye/index.html atau /Dye/data/admin.html
+  if (currentPath.includes('/data/')) {
+    // admin.html di folder data
+    return './data.json';
+  } else {
+    // index.html di root
+    return './data/data.json';
+  }
+}
+
+// Ambil data.json
 async function loadData() {
-  const res = await fetch('data.json');
-  data = await res.json();
-  renderForm(sectionSelect.value);
+  const path = getDataPath();
+  try {
+    const res = await fetch(path);
+    data = await res.json();
+    renderForm(sectionSelect.value);
+  } catch (err) {
+    console.error('Gagal load data.json dari', path, err);
+    formContainer.innerHTML = `<p class="text-red-500">Gagal load data.json. Cek console.</p>`;
+  }
 }
 
 function renderForm(section) {
@@ -63,7 +81,7 @@ function renderForm(section) {
   }
 }
 
-// Update nilai di data object saat input berubah
+// Update nilai data object saat input berubah
 formContainer.addEventListener('input', e => {
   const type = e.target.dataset.type;
   const index = e.target.dataset.index;
@@ -84,10 +102,10 @@ formContainer.addEventListener('input', e => {
 sectionSelect.addEventListener('change', e => renderForm(e.target.value));
 
 // Tombol Simpan
-document.getElementById('saveBtn').addEventListener('click', async () => {
-  // Di sini lo bisa panggil GitHub API buat push data.json
+document.getElementById('saveBtn')?.addEventListener('click', async () => {
   console.log('Updated data.json:', JSON.stringify(data, null, 2));
   alert('Data JSON sudah terupdate (console.log untuk demo).');
 });
 
+// Load awal
 loadData();
