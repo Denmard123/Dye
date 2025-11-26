@@ -1,86 +1,33 @@
-name: Auto Generate Sitemap - Full Scan
+name: Generate Sitemap Automatically
 
 on:
   push:
     branches:
-      - main   # ganti sesuai branch utama
-  schedule:
-    - cron: '0 2 * * *' # jalan tiap hari jam 2 pagi UTC (optional)
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      # 1️⃣ Checkout repo
       - uses: actions/checkout@v3
 
-      # 2️⃣ Install dependencies
-      - name: Install dependencies
-        run: sudo apt-get install -y python3-bs4 python3-lxml python3-requests
-
-      # 3️⃣ Generate sitemap by scanning all links
       - name: Generate sitemap
         run: |
-          python3 << 'EOF'
-          import os
-          from bs4 import BeautifulSoup
+          echo "<?xml version='1.0' encoding='UTF-8'?>" > sitemap.xml
+          echo "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>" >> sitemap.xml
 
-          BASE_URL = "https://denmard123.github.io/Dye/"
-          sitemap_file = "sitemap.xml"
+          for file in $(find . -name "*.html"); do
+            url="https://denmard123.github.io/Dye/${file#./}"
+            echo "  <url><loc>$url</loc></url>" >> sitemap.xml
+          done
 
-          urls = set()
+          echo "</urlset>" >> sitemap.xml
 
-          # Fungsi untuk scan file HTML
-          def scan_html(file_path):
-              try:
-                  with open(file_path, "r", encoding="utf-8") as f:
-                      soup = BeautifulSoup(f, "lxml")
-                  for a in soup.find_all("a", href=True):
-                      href = a["href"].strip()
-                      if href.startswith("#") or href.startswith("javascript:"):
-                          continue
-                      if href.startswith("http://") or href.startswith("https://"):
-                          urls.add(href)
-                      else:
-                          full_url = os.path.join(BASE_URL, href)
-                          urls.add(full_url.replace("\\", "/"))
-              except Exception as e:
-                  print(f"Error scanning {file_path}: {e}")
-
-          # Scan semua HTML di root
-          for file in os.listdir("."):
-              if file.endswith(".html"):
-                  scan_html(file)
-
-          # Tambahkan homepage
-          urls.add(BASE_URL)
-
-          # Tulis sitemap.xml
-          with open(sitemap_file, "w", encoding="utf-8") as f:
-              f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-              f.write('<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">\n')
-              for url in sorted(urls):
-                  # Prioritas bisa diatur berdasarkan kategori
-                  if "about.html" in url:
-                      priority = "0.8"
-                  elif "blog" in url or "show-blog" in url:
-                      priority = "0.7"
-                  elif "HabitTracker" in url:
-                      priority = "0.9"
-                  else:
-                      priority = "0.6"
-                  f.write(f"  <url><loc>{url}</loc><priority>{priority}</priority></url>\n")
-              f.write('</urlset>\n')
-          EOF
-
-      # 4️⃣ Commit & Push sitemap
-     - name: Commit & Push Sitemap
-  env:
-    PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
-  run: |
-    git config user.name "GitHub Actions"
-    git config user.email "actions@github.com"
-    git add sitemap.xml
-    git commit -m "Update sitemap from index.html" || echo "No changes to commit"
-    git push https://x-access-token:${PAT_TOKEN}@github.com/Denmard123/Dye.git HEAD:main
+      - name: Commit sitemap
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add sitemap.xml
+          git commit -m "Auto update sitemap" || echo "No changes to commit"
+          git push
