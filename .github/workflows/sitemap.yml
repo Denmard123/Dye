@@ -15,14 +15,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
       - name: Generate sitemap
         run: |
           echo "<?xml version='1.0' encoding='UTF-8'?>" > sitemap.xml
           echo "<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>" >> sitemap.xml
 
+          # Static HTML files
           for file in $(find . -name "*.html"); do
             url="https://denmard123.github.io/Dye/${file#./}"
             echo "  <url><loc>$url</loc></url>" >> sitemap.xml
+          done
+
+          # Dinamis project URLs from data.json
+          for id in $(jq -r '.projects[].id' data/data.json); do
+            echo "  <url><loc>https://denmard123.github.io/Dye/project.html?id=${id}</loc></url>" >> sitemap.xml
           done
 
           echo "</urlset>" >> sitemap.xml
